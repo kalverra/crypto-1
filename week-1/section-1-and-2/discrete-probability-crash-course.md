@@ -1,19 +1,3 @@
-# Section 1: Intro and History
-
-Some overviews on what crypto is, what it's good for, and what the course looks like. Mostly skipped here.
-
-## History of Cryptography
-
-Symmetric ciphers are the very beginnings. You use the same key to encrypt and decrypt the message.
-
-![Alt text](symmetric-ciphers.png)
-
-The most obvious one of these is a substitution cipher (a = z, b = x, ... e.g. [Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher)). These are easily broken with frequency attacks. Just check what the most common characters and character combinations are in the language you're using, start matching things up, bada bing bada boom.
-
-A little better is the [Vigenère cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher) where you create a worded key, match the key with the text, then do `(key_letter + message_letter) % 26 == encrypted_letter`. If the key is something like `crypto` and the message is longer, you just repeat the key to match. Herein lies the vulnerability, if we know the length of the key, we can figure out all letters encrypted with K<sub>1</sub>, then K<sub>2</sub>, etc. We can also brute force this by just guess-checking the length of the key.
-
-Even better is [Rotor machines](https://en.wikipedia.org/wiki/Rotor_machine), which kept a secret key as part of its disk, and each key press moved the disk to change the substitution table with every key press. This got continuously busted until it led to [The Enigma Machine](https://en.wikipedia.org/wiki/Enigma_machine), each one making more and more complex rotor key systems. Turing busted this up with similar methods (but with computers!) and this kicked off the "data-age" of encryption where ciphers, no matter how convoluted, ain't gonna cut it anymore.
-
 # Section 2: Discrete Probability Crash Course
 
 Discrete probability is always defined over a `universe` or `U`. For our purposes, this will always be a finite set, very commonly the set of all n bit strings, denoted as `U = {0,1}^n`. So if `n = 2`, then `U = {00, 01, 10, 11}`. This universe is one where each element has a discrete probability of happening, and each of these probabilities adds up to 1. For example `00 = .25, 01 = .25, 10 = .5, 11 = 0`.
@@ -51,3 +35,18 @@ A random variable is a function that acts on universe `U` and produces a set `V`
 ## Randomized Algorithm
 
 ... Also a function which is also a random variable, but this time actually with some randomness thrown in as an input? This is going to bite me in the ass later, but I'm having a hard time seeing the distinctions between these.
+
+## Independence
+
+2 events A and B are **independent** if Pr[A] and Pr[B] don't effect each other at all. Formally, this means that `Pr[A and B] = Pr[A] * Pr[B]`. The same can apply to random variables, so if `X` and `Y` have nothing to do with each other, you could say that `Pr[X=a and Y=b] = Pr[X = a] * Pr[X = b]`.
+
+## XOR
+
+Cryptography uses XOR a shitload. An important reason for this is that if we define `Y` as a random variable over {0, 1}^n, and `X` as an independent, **uniform** random variable over the same universe, if we XOR `Y` and `X`, then we get a **uniform** random variable on that universe. So we could take some arbitrarily malicious random variable `Y`, XOR it with our trusted variable `X`, and the result will be uniform.
+
+![Alt text](xor.png)
+
+## Birthday Paradox
+
+If we let `r1`,...,`rn` be independent, random variables that are *identically distributed*, then when `n` is sufficiently large, then the probability of 2 `r` variables being equal is greater than or equal to 1/2. `Pr[there exists i != j: ri = rj] >= 1/2`. This is usually described as the [birthday problem](https://en.wikipedia.org/wiki/Birthday_problem). This isn't quite the same, as birthdays aren't quite uniform, or even independent sometimes, but it's good enough. It's also not a paradox, just unintuitive.
+
