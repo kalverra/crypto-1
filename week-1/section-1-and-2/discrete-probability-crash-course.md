@@ -12,14 +12,6 @@ Consider `A` as a subset of our universe `U`. The probability of A `Pr[A]` is eq
 
 ![Alt text](events.png)
 
-*Quiz Question*
-
-An example of an event could be that we have a universe `U = {0, 1}^8`, a set of all possible byte values. Our event `A` could be all elements in `U` that have the least significant bits `11`. If we assumes that `U` has a uniform distribution, what is `Pr[A]`?
-
-*Answer*
-
-50% of `U` has lsb<sub>1</sub> = 1, so I'm guessing 25% of `U` has lsb<sub>2</sub> = 11. (Correct! By the way, the Coursera text input expects `0.25`, not `25%`).
-
 ### Union Bound
 
 If we have 2 events, A<sub>1</sub> and A<sub>2</sub>, we can calculate the probability that either A<sub>1</sub> or A<sub>2</sub> occurs as less than or equal to the sum of both of them. That's because we double-sum elements in the intersection of the two probabilities.
@@ -50,3 +42,4 @@ Cryptography uses XOR a shitload. An important reason for this is that if we def
 
 If we let `r1`,...,`rn` be independent, random variables that are *identically distributed*, then when `n` is sufficiently large, then the probability of 2 `r` variables being equal is greater than or equal to 1/2. `Pr[there exists i != j: ri = rj] >= 1/2`. This is usually described as the [birthday problem](https://en.wikipedia.org/wiki/Birthday_problem). This isn't quite the same, as birthdays aren't quite uniform, or even independent sometimes, but it's good enough. It's also not a paradox, just unintuitive.
 
+![Alt text](birthday-paradox.png)
