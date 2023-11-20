@@ -53,3 +53,22 @@ Supposedly, the magic here is in the S boxes, which is a lookup table that maps 
 A common attack on block ciphers are exhaustive search attacks. If we suppose that DES is an ideal cipher, we can know with high probability (99.5%) that there is only one key that will map that input to that output. So we can start brute force guessing. And if we manage to get 2 pairs, the probability basically becomes 100% that there's only one key. In the 90s, RSA announced the [DES challenge](https://en.wikipedia.org/wiki/DES_Challenges) where RSA published 3 message-cipher pairs, and a bunch of ciphers for people to try and crack. In 1997, it took 3 months to brute force the key. In 1998, a special machine was built called deep crack to break it in 3 days. As hardware has gotten faster, it's gotten much faster and cheaper to break these, and so DES, and any other 56-bit ciphers are long dead.
 
 So, we need a new encryption standard. First thought was [3DES](https://en.wikipedia.org/wiki/Triple_DES), where we do DES but with triple the keys, so now we have 3x56 = 168-bit keys, which would take all the hardware in the world thousands of years to break. But it's now 3 times slower than plain old DES. Why not double it instead of triple? Because double would be vulnerable to a [meet-in-the-middle-attack](https://en.wikipedia.org/wiki/Meet-in-the-middle_attack). Because a double DES would look like `E(k1, E(k2, m)) = c`, which we can simplify to `E(k2, m) = D(k1, c)`, and anytime we have 2 independent keys on either side of the equation, it's probably going to have issues with meet-in-the-middle attacks.
+
+## More Attacks on Block Ciphers
+
+Here follows some examples of block cipher attacks. Suffice to say, consider this a warning when thinking of rolling your own crypto, and stick to AES. (Though, I would think in a cryptography class, you eventually are going to talk to someone who will in fact NEED to roll their own crypto. So when does that rule first get "broken" I wonder?)
+
+* You can measure power/time/cpu usage that the encryption algorithm uses to figure out the keys. This is especially an issue with low-powered devices like smart cards. (Side-Channel attacks)
+* Similar to above, you can watch for cache misses when the encryption is happening to get a sense of the keys being used.
+* If there are errors in the last round of encryption (like if I flip some bits or heat up the machine) then the output can expose the key. (Fault attacks)
+
+### [Linear Attacks](https://en.wikipedia.org/wiki/Linear_cryptanalysis)
+
+![Alt text](linear-attack.png)
+
+DES is susceptible to this as one of its S-boxes is too close to a linear function, so that propagates through the rest of the cipher to mean that some message and cipher xors have a linear relationship to some keys. Assuming the encryption is susceptible to this, if we have enough pairs, we can figure out a good portion of the key faster than exhaustive search.
+
+### Quantum Attacks
+
+Quantum computers can break a lot of shit. For example, if we have a function `f(x)` that outputs either 1 or 0, and only outputs 1 for a single input, and we want to find that input, a normal computer is just going to have to guess for all values of x. But a quantum computer can do so in a square root of all those values. (Theoretically, we don't actually know if we can build a big enough quantum computer to do this stuff, as of the taping of this lecture.)
+
