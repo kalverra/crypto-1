@@ -70,5 +70,23 @@ DES is susceptible to this as one of its S-boxes is too close to a linear functi
 
 ### Quantum Attacks
 
+[Computerphile video](https://youtu.be/BYx04e35Xso?si=yzToSjb5zxxJKh1m)
+
 Quantum computers can break a lot of shit. For example, if we have a function `f(x)` that outputs either 1 or 0, and only outputs 1 for a single input, and we want to find that input, a normal computer is just going to have to guess for all values of x. But a quantum computer can do so in a square root of all those values. (Theoretically, we don't actually know if we can build a big enough quantum computer to do this stuff, as of the taping of this lecture.)
 
+## AES Block Cipher
+
+[Computerphile also here](https://youtu.be/O4xNJsjtN6E?si=t79A78xAjk4ryxry).
+
+In the late 90s, NIST was asking around for new standards as DES and 3DES were too slow, and in 2000 they chose Rijndael as AES. It has 3 possible key sizes, with larger keys being more secure, but slower execution. AES uses a Subs-Perm (Substitutions-Permutations) network instead of Feistel.
+
+![Alt text](aes.png)
+
+AES operates entirely on 4x4 grids of bytes, each round includes an xor, a substitution, and a permutation, utilizing the corresponding round key.
+
+AES is entirely made up of mathematical operations over a finite field (or [Galois field](https://en.wikipedia.org/wiki/Finite_field)). Which means no matter what operations we make on the values in the field, we stay within the field, which is some sort of range, like {0,1}<sup>n</sup>.
+
+### Attacks
+
+* The best key recovery attack is 4 times faster than exhaustive search, but with a 128-bit key, it still isn't exactly feasible.
+* You can do a [related key attack](https://en.wikipedia.org/wiki/Related-key_attack) on AES-256, provided you have 2<sup>99</sup> input-output pairs from **four closely related keys**, you can get those keys in 2<sup>99</sup> time, which is still not great.
