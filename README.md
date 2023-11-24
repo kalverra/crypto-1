@@ -1,6 +1,6 @@
 # Crypto 1
 
-My notes on [Stanford's Cryptography 1 course presented by Coursera](https://www.coursera.org/learn/crypto). These notes are meant for my own personal understanding and chronicling, it's not really intended to be consumed by others. If you're looking to learn this stuff yourself, you'd be better served by just going to the course.
+My notes on [Stanford's Cryptography 1 course presented by Coursera](https://www.coursera.org/learn/crypto). These notes are meant for my own personal understanding and chronicling, it's not really intended to be consumed by others. They are riddled with misunderstandings, profanity, and outright incorrect assumptions that I haven't bothered to go back and correct. If you're looking to learn this stuff yourself, you'd be better served by just going to the course.
 
 Things to look at after this:
 
