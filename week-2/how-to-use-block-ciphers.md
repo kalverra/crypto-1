@@ -24,8 +24,18 @@ So how can we use these to make a many time key block cipher system secure?
 
 ### Cipher Block Chaining (CBC) (with random IV (initialization vector))
 
-Got to that phrase faster than I thought we would. Here we take the injecting randomness approach. Caveat: if an attacker can predict the IV, you're fucked.
+Got to that phrase faster than I thought we would. Here we take the injecting randomness approach. Caveat: if an attacker can predict the IV, you're fucked, and that happens a lot in the real world (SSL got hit).
 
 ![Alt text](cbc.png)
 
-### 
+### Nonce Based CBC
+
+Basically the same thing as above, but **we encrypt the nonce with a unique key to produce our IV** (this step is super important and apparently gets forgotten or fucked up a lot). It also means that we need a new key for that process for each message.
+
+![Alt text](nonce-cbc.png)
+
+### Randomized Counter Mode (the superior mode)
+
+We don't even need a block cipher, just a PRF, and we can parallelize the work!
+
+![Alt text](rand-ctr.png)

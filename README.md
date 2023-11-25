@@ -12,4 +12,3 @@ Things to look at after this:
 * We knew it already, but say it loud for the whole room to hear, **don't roll your own crypto**, shit's hard. Let the PhDs do it.
 * "Perfectly Encrypted" is sort a of a fool's game, we're operating off probabilities here, let's make em small.
 * The [semantic security](https://en.wikipedia.org/wiki/Semantic_security) game and how [advantage](https://en.wikipedia.org/wiki/Advantage_(cryptography)) works to evaluate the security of encryption schemes.
-* 
