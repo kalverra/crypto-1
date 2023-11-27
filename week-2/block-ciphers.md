@@ -34,7 +34,7 @@ My intuition was right about this being similar to PRGs, as we can map a PRF to 
 
 DES was a national standard, originating from IBM in the 70s. It had a tiny key length by modern standards (56 bits) and was broken by **exhaustive search** in 1997. In 2000, NIST replaced it with AES. It was super popular, used in ACH transfers and most of the web.
 
-## Core Idea: Feistel Network
+## Core Idea: [Feistel Network](https://youtu.be/FGhj3CGxl8I?si=1ITvkDg0UPeRI9Jf)
 
 ![Alt text](feistel.png)
 
