@@ -10,7 +10,7 @@ Where we use statistics to make fun birthday-based facts, and break hashes. If o
 
 ![Alt text](merkle-damgard.png)
 
-This paradigm of `compression -> hash` is used in pretty much all hash functions today, and that's because of a theorem that states that if a little compression function is collisions resistant, then so will the big-boy version.
+This paradigm of `compression -> hash` is used in pretty much all hash functions today, and that's because of a theorem that states that if a little compression function is collision resistant, then so will the big-boy version.
 
 ## HMACs
 
